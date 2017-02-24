@@ -5,7 +5,7 @@ if (!function_exists('add_slider'))
 	{
 		echo '<div class="row main-slide-area">';
 		echo '<div id="main-slide" class="carousel slide" data-ride="carousel">';
-
+		//config_item('slider_indicator') has to setup in your config file
 		(config_item('slider_indicator') == TRUE) ? $carousel_indicator_class = '' : $carousel_indicator_class = 'hidden';
 
 		$carousel_indicators_class_active = 'active';
@@ -20,6 +20,7 @@ if (!function_exists('add_slider'))
 		$class_active = 'active';
 		for ($i = 0; $i < count($array); $i++)
 		{
+			// config_item('slider_image_url') has to setup in your config file - a path where your images reside on server. 
 			$attr = array(
 				 'src' => config_item('slider_image_url') . $array[$i],
 			);
