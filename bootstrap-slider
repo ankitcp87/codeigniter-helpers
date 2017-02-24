@@ -1,0 +1,49 @@
+if (!function_exists('add_slider'))
+{
+
+	function add_slider($array)
+	{
+		echo '<div class="row main-slide-area">';
+		echo '<div id="main-slide" class="carousel slide" data-ride="carousel">';
+
+		(config_item('slider_indicator') == TRUE) ? $carousel_indicator_class = '' : $carousel_indicator_class = 'hidden';
+
+		$carousel_indicators_class_active = 'active';
+		echo '<ol class="carousel-indicators ' . $carousel_indicator_class . '">';
+		for ($i = 0; $i < count($array); $i++)
+		{
+			echo '<li data-target="#main-slide" data-slide-to="' . $i . '" class="' . $carousel_indicators_class_active . '"></li>';
+			$carousel_indicators_class_active = '';
+		}
+		echo '</ol>';
+		echo '<div class="carousel-inner">';
+		$class_active = 'active';
+		for ($i = 0; $i < count($array); $i++)
+		{
+			$attr = array(
+				 'src' => config_item('slider_image_url') . $array[$i],
+			);
+			echo '<div class="item ' . $class_active . '">';
+			echo img($attr);
+			echo '</div>';
+			$class_active = '';
+		}
+		echo '</div>';
+//		Controls left right arrows
+		$attr_prev = array(
+			 'class'		 => 'left carousel-control',
+			 'data-slide' => 'prev',
+			 'role'		 => 'button',
+		);
+		echo anchor('#main-slide', ' ', $attr_prev);
+		$attr_next = array(
+			 'class'		 => 'right carousel-control',
+			 'data-slide' => 'next',
+			 'role'		 => 'button',
+		);
+		echo anchor('#main-slide', ' ', $attr_next);
+		echo '</div>';
+		echo '</div>';
+	}
+
+}
